@@ -1,0 +1,25 @@
+Process:
+
+First we import the data in a folder format way,That folder contain five csv file those are enugu_transaction,fact_transaction,kano_transaction,logos_transaction,rivers_transaction after that we combine the all the file then load that file in power query.
+This transaction file contain the following column source.name,TransactionID,TransactionStartDatetime,
+TransactionEndDatetime,CardholderID,LocationID,TransactionTypeID,TransactionAmount.
+then we remove the source.name column by using remove column option.
+
+We find the duration of mintes between TransactionStartDatetime,TransactionEndDatetime then we click custom column option in Add column, give the column name Duration and use that formula
+    =Duration.TotalMinutes([TransactionEndDateTime]-[TransactionStartDateTime])
+
+After that we extract the hour from TransactionStartDatetime column then we select TransactionStartDatetime column then click time option of Add column ,in time option click hour.
+
+we convert TransactionStartDatetime column to Date data type and Duration column to whole number.
+we remove the TransactionEndDatetime from Transction table using remove column option.
+Rename the TransactionStartDatetime column to Date  column in Transction table.
+
+we find the age column from birth column in customers tble.we using custom column option in Add column in power query,give the column name age and use that formula in power query.
+  =Duration.TotalDays(#date(2023,1,1)-[Birth Date])/365.25
+
+using rounding option in transform we find the round number in age column.
+
+Create a new conditional column name as "Age group" in customer table.In "Age group" we give the condition
+first condition if age is less than or equal to 15 then output 0-15,second condition if age is less than or equal to 25 then output 16-25,third condition if age is less than or equal to 35 then output 26-35,
+fourth condition if age is less than or equal to 45 then output 36-45,fifth condition if age is less than or equal to 55 then output 46-55,six condition if age is less than or equal to 65 then output 56-65,
+seventh condition if age is greater than 65 then output more than 65 otherwise "other".
