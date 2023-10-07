@@ -1,0 +1,23 @@
+KPI:
+1.Average amount = AVERAGE(Transction[TransactionAmount])
+
+2.Number of customer = DISTINCTCOUNT(Transction[CardholderID])
+
+3.Transction amount = SUM(Transction[TransactionAmount])
+
+4.Transction count = COUNTROWS(Transction)
+
+5.Transction frequency = DIVIDE([Transction count],[Number of customer],0)
+
+6.Utilization rate for ATMs refer to the percentage of time that an ATM is being used for transction,as compared to the total time that the ATM is available for use.
+
+Utilization rate=(Total Transction Time/Total available Tima)*100%
+
+
+Utilization rate = 
+var transction_time=SUM(Transction[Duration])
+var available_time=24*365*60*SUM(Location[No of ATMs])
+var utilization_rate=DIVIDE(transction_time,available_time,0)
+return utilization_rate
+
+7.Average Duration = AVERAGE(Transction[Duration])
